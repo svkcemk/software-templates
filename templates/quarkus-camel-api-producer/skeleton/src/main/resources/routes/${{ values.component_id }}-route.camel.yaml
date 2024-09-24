@@ -1,0 +1,18 @@
+- rest:
+    openApi:
+      specification: api-registry/${{ values.api_id }}-api.json
+- route:
+    id: route-endpoint-4325
+    description: Route /path
+    from:
+      uri: direct:operationIdUpdateMe
+      parameters:
+        exchangePattern: InOut
+      steps:
+        - unmarshal:
+            json:
+              library: Jackson
+        - log:
+            message: "Request body: ${body}."
+        - setBody:
+            simple: '{ "received": true }'
